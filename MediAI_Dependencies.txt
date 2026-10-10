@@ -1,0 +1,90 @@
+APEX Care Hospital — MediAI Project Dependencies
+=================================================
+
+1. AWS ACCOUNT / BILLING
+- An AWS account with billing alerts enabled.
+- Use IAM/Identity Center for administration; do not use root for routine work.
+- Region for main resources: ap-south-1 (Mumbai).
+- CloudFront is global.
+- Viewer ACM certificate for CloudFront: request in us-east-1.
+
+2. LOCAL COMPUTER
+- Windows 10/11, macOS, or Linux
+- Git
+- Node.js 22.x (or another supported LTS version)
+- npm
+- MySQL client (optional but strongly recommended for DB testing)
+- AWS CLI v2 (optional; console-first workflow is used)
+- A text editor such as VS Code
+- A modern browser
+
+3. AWS SERVICES
+Required:
+VPC, Internet Gateway, public/private subnets, route tables, NAT Gateway,
+Security Groups, EC2, Launch Template, Auto Scaling Group, ALB, Target Group,
+S3, RDS MySQL, CloudFront, Route 53, ACM, IAM, Amazon Bedrock,
+CloudWatch, CloudTrail.
+
+4. APPLICATION PORTS
+80  HTTP
+443 HTTPS
+3000 Node.js API
+3306 MySQL
+22 SSH (prefer Systems Manager instead of public SSH where practical)
+
+5. NETWORK
+VPC: 10.0.0.0/16
+AZ-A public: 10.0.1.0/24
+AZ-B public: 10.0.2.0/24
+AZ-A app: 10.0.11.0/24
+AZ-B app: 10.0.12.0/24
+AZ-A db: 10.0.21.0/24
+AZ-B db: 10.0.22.0/24
+
+6. APPLICATION
+Backend:
+Node.js + Express
+MySQL2
+bcryptjs
+jsonwebtoken
+helmet
+cors
+express-rate-limit
+morgan
+dotenv
+@aws-sdk/client-bedrock-runtime
+
+Frontend:
+Plain HTML5 + CSS3 + JavaScript. No React dependency.
+
+7. AWS CREDENTIALS
+NO application AWS access key or secret key is required.
+EC2 uses an IAM instance role.
+Bedrock access is authorized by the EC2 role.
+Do not create permanent IAM access keys for the application.
+
+8. DATABASE VALUES YOU MUST CHOOSE
+DB host: provided by RDS after creation
+DB port: 3306
+DB name: mediai_hospital
+DB user: choose a non-root DB user if supported by your setup
+DB password: generate a strong unique password and store it securely.
+Do not commit it to Git.
+
+9. BEDROCK
+You must enable/request access to a text-generation model available to your account/region.
+Set:
+BEDROCK_MODEL_ID=<YOUR_AVAILABLE_MODEL_OR_INFERENCE_PROFILE_ID>
+Do not hard-code a model ID until you verify availability in your AWS account.
+No API key is placed in the Node.js application.
+
+10. DOMAIN
+For HTTPS with a custom domain, you need a domain you control.
+Use:
+YOUR_DOMAIN_NAME
+Do not invent or reuse a real domain.
+If you do not own a domain, the application can still be tested with CloudFront/ALB DNS names during learning, but custom Route 53 + ACM steps require domain ownership.
+
+11. FILES
+The code directory contains complete starter files.
+The main guide is in APEX_Care_Hospital_End_to_End_Guide.md.

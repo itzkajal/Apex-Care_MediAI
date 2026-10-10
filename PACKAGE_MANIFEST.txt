@@ -1,0 +1,37 @@
+APEX Care Hospital — Download Package Manifest
+================================================
+
+MAIN GUIDE
+APEX_Care_Hospital_End_to_End_Guide.md
+Complete step-by-step project guide, architecture, deployment, testing,
+failure testing, security, cost optimization, cleanup, resume summary and interview questions.
+
+DEPENDENCIES
+MediAI_Dependencies.txt
+All local/AWS/application prerequisites.
+
+CODE
+code/frontend/*.html.txt
+code/frontend/css/style.css.txt
+code/frontend/js/*.js.txt
+code/backend/**/*.js.txt
+code/backend/package.json.txt
+code/backend/.env.example.txt
+code/database/schema.sql.txt
+code/deployment/*.sh.txt
+code/deployment/*.js.txt
+
+The original code files without the final .txt suffix are also included.
+
+MEDIA
+media/APEX_Care_End_to_End_Flow.gif
+Animated visual walkthrough of the request flow.
+
+media/APEX_Care_Voiceover_Script.txt
+Narration script that can be recorded/used with TTS.
+
+SECURITY NOTE
+No real AWS secret keys or database passwords are included.
+Bedrock is authenticated through an EC2 IAM role.
+You must supply environment-specific values such as RDS endpoint,
+database password, JWT secret, domain and selected Bedrock model/inference profile.

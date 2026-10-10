@@ -1,0 +1,20 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.tfstate
+*.tfstate.*
+.terraform/
+coverage/
+dist/
+build/
+*.log
+
+# Duplicate source files saved as text
+*.js.txt
+*.html.txt
+*.css.txt
+*.sql.txt
+*.md.txt

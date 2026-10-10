@@ -1,0 +1,12 @@
+APEX Care Hospital end-to-end architecture walkthrough.
+
+A user first reaches Route 53, which provides DNS for the hospital application.
+The request then reaches CloudFront. CloudFront serves static frontend files from private S3 using Origin Access Control.
+API requests under the /api path are routed to the Application Load Balancer.
+The load balancer sends traffic to healthy EC2 instances in private application subnets.
+Those instances run the Node.js and Express backend.
+The backend connects privately to Amazon RDS MySQL for application data.
+For AI questions, the backend calls Amazon Bedrock using an EC2 IAM role instead of hard-coded AWS credentials.
+CloudWatch monitors the infrastructure and application, while CloudTrail records AWS API activity.
+If an EC2 instance fails, the load balancer stops sending traffic to the unhealthy target and the Auto Scaling Group can launch a replacement.
+This completes the secure, scalable three-tier architecture of APEX Care Hospital.
